@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+@inject JsPart<MainLayout> Js
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <span @onclick="OnClickSayButton">Say</span>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private async Task OnClickSayButton(MouseEventArgs e)
+    {
+        await Js.InvokeVoidAsync("sayMain");
+    }
+}

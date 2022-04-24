@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject ILogger<Index> Logger
+@inject JsService Jss
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<button @onclick="OnClickWebSingleButton">单 WebJS 文件</button>
+
+@code {
+    private async Task OnClickWebSingleButton(MouseEventArgs e)
+    {
+        Logger.LogInformation("单 WebJs 文件");
+        await using JsModule Jsm = Jss.Import("/js/websingle.js");
+        await Jsm.InvokeVoidAsync("sayHello");
+    }
+}
