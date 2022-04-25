@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<IsPackable>true</IsPackable>
 	<PackageId>Boboom.Js</PackageId>
-	<Version>0.0.1</Version>
+	<Version>0.0.2</Version>
 	<Authors>chenshenchao</Authors>
 	<PackageLicenseFile>License</PackageLicenseFile>
 	<PackageReadmeFile>Readme.md</PackageReadmeFile>
