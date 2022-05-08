@@ -9,8 +9,13 @@ dotnet add package Boboom.Js
 Install-Package Boboom.Js
 ```
 
-## 打包
+## 使用
 
-```bash
-dotnet pack -c Release
+```csharp
+builder.Services.AddBoboomJsService()
+    .AddBoboomJsDom();
+```
+
+```razor
+@inject JsPart<UserBlazor> Js
 ```

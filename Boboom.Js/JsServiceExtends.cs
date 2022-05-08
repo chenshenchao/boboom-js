@@ -17,4 +17,10 @@ public static class JsServiceExtends
         services.AddScoped(typeof(JsPartLibrary<>), typeof(JsPartLibrary<>));
         return services;
     }
+
+    public static IServiceCollection AddBoboomJsDom(this IServiceCollection services)
+    {
+        services.AddSingleton(sp => new JsDom(sp.GetRequiredService<IJSRuntime>()));
+        return services;
+    }
 }
