@@ -1,6 +1,6 @@
 ﻿@page "/"
 @inject ILogger<Index> Logger
-@inject JsService Jss
+@inject BoJsService Jss
 
 <PageTitle>Index</PageTitle>
 
@@ -16,7 +16,7 @@ Welcome to your new app.
     private async Task OnClickWebSingleButton(MouseEventArgs e)
     {
         Logger.LogInformation("单 WebJs 文件");
-        await using JsModule Jsm = Jss.Import("/js/websingle.js");
+        await using BoJsModule Jsm = Jss.Import("/js/websingle.js");
         await Jsm.InvokeVoidAsync("sayHello");
     }
 }

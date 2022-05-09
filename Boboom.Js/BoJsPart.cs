@@ -1,12 +1,10 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 
 namespace Boboom.Js;
 
-public class JsPart<T> : JsModule
+public class BoJsPart<T> : BoJsModule
 {
-    public JsPart(IJSRuntime jsRuntime) : base(jsRuntime, ResolvePartSource()) { }
+    public BoJsPart(IJSRuntime jsRuntime) : base(jsRuntime, ResolvePartSource()) { }
 
     public static string ResolvePartSource()
     {

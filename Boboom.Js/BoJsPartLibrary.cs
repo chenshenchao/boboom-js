@@ -2,9 +2,9 @@
 
 namespace Boboom.Js;
 
-public class JsPartLibrary<T> : JsModule
+public class BoJsPartLibrary<T> : BoJsModule
 {
-    public JsPartLibrary(IJSRuntime jsRuntime) : base(jsRuntime, ResolvePartFilePath()) { }
+    public BoJsPartLibrary(IJSRuntime jsRuntime) : base(jsRuntime, ResolvePartFilePath()) { }
 
     public static string ResolvePartFilePath()
     {

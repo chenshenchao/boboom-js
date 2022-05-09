@@ -12,8 +12,7 @@ Install-Package Boboom.Js
 ## 使用
 
 ```csharp
-builder.Services.AddBoboomJsService()
-    .AddBoboomJsDom();
+builder.Services.AddBoboomJsService();
 ```
 
 ```razor

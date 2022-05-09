@@ -7,7 +7,7 @@ namespace Boboom.Js;
 /// <summary>
 /// JavaScript 模块
 /// </summary>
-public class JsModule : IAsyncDisposable
+public class BoJsModule : IAsyncDisposable
 {
     public string Source { get; init; }
     public Lazy<Task<IJSObjectReference>> ModuleTask { get; init; }
@@ -17,7 +17,7 @@ public class JsModule : IAsyncDisposable
     /// </summary>
     /// <param name="jsRuntime"></param>
     /// <param name="source"></param>
-    public JsModule(IJSRuntime jsRuntime, string source)
+    public BoJsModule(IJSRuntime jsRuntime, string source)
     {
         Source = source;
         ModuleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>("import", Source).AsTask());
@@ -29,7 +29,7 @@ public class JsModule : IAsyncDisposable
     /// <param name="jsRuntime"></param>
     /// <param name="assembly"></param>
     /// <param name="filePath"></param>
-    public JsModule(IJSRuntime jsRuntime, Assembly assembly, string filePath)
+    public BoJsModule(IJSRuntime jsRuntime, Assembly assembly, string filePath)
         : this(jsRuntime, ResolveSourceLibrary(assembly, filePath)) { }
 
     public async ValueTask DisposeAsync()
