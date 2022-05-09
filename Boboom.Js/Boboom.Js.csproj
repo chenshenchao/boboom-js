@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	<IsPackable>true</IsPackable>
 	<PackageId>Boboom.Js</PackageId>
-	<Version>0.0.4</Version>
+	<Version>0.0.5</Version>
 	<Authors>chenshenchao</Authors>
 	<PackageLicenseFile>License</PackageLicenseFile>
 	<PackageReadmeFile>Readme.md</PackageReadmeFile>
@@ -42,10 +42,6 @@
 		<None Include="../License" Pack="true" PackagePath="/" />
 		<None Include="../Readme.md" Pack="true" PackagePath="/" />
 		<None Include="../Logo.png" Pack="true" PackagePath="/" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\" />
 	</ItemGroup>
 
 </Project>

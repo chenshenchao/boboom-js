@@ -1,0 +1,73 @@
+﻿@page "/storage"
+@using System.Text.Json
+@inject ILogger<Index> Logger
+@inject BoJsStorage JsStorage
+
+<PageTitle>Storage</PageTitle>
+
+<div class="boboom-js-storage-demo-page">
+    <div class="local-demo-box">
+        <div class="local-demo-top">
+            <label>Local Storage</label>
+            <input @bind="localKey" />
+            <button @onclick="OnClickSaveLocal">保存</button>
+            <button @onclick="OnClickLoadLocal">读取</button>
+        </div>
+        <textarea @bind="localValue" rows="10"></textarea>
+    </div>
+    <div class="session-demo-box">
+        <div class="session-demo-top">
+            <label>Session Storage</label>
+            <input @bind="sessionKey"/>
+            <button @onclick="OnClickSaveSession">保存</button>
+            <button @onclick="OnClickLoadSession">读取</button>
+        </div>
+        <textarea @bind="sessionValue" rows="10"></textarea>
+    </div>
+</div>
+
+@code {
+    private class StorageDemoLv2
+    {
+        public int? Lv2Int { get; set; }
+        public string? Lv2Text { get; set; }
+    }
+
+    private class StorageDemoLv1
+    {
+        public bool? Lv1Bool { get; set; }
+        public DateTime? Lv1DateTime { get; set; }
+        public StorageDemoLv2? Lv2 { get; set; }
+    }
+
+    private string localKey = string.Empty;
+    private string localValue = string.Empty;
+    private string sessionKey = string.Empty;
+    private string sessionValue = string.Empty;
+
+    private async Task OnClickSaveLocal(MouseEventArgs e)
+    {
+        StorageDemoLv1? d = string.IsNullOrWhiteSpace(localValue)
+            ? null : JsonSerializer.Deserialize<StorageDemoLv1>(localValue);
+        await JsStorage.SetLocalAsync(localKey, d, TimeSpan.FromHours(2));
+    }
+
+    private async Task OnClickLoadLocal(MouseEventArgs e)
+    {
+        StorageDemoLv1? d = await JsStorage.GetLocalAsync<StorageDemoLv1>(localKey);
+        localValue = d is null ? string.Empty : JsonSerializer.Serialize(d);
+    }
+
+    private async Task OnClickSaveSession(MouseEventArgs e)
+    {
+        StorageDemoLv1? d = string.IsNullOrWhiteSpace(sessionValue)
+            ? null : JsonSerializer.Deserialize<StorageDemoLv1>(sessionValue);
+        await JsStorage.SetSessionAsync(sessionKey, d, TimeSpan.FromHours(2));
+    }
+
+    private async Task OnClickLoadSession(MouseEventArgs e)
+    {
+        StorageDemoLv1? d = await JsStorage.GetSessionAsync<StorageDemoLv1>(sessionKey);
+        sessionValue = d is null ? string.Empty : JsonSerializer.Serialize(d);
+    }
+}

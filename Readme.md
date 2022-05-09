@@ -16,5 +16,24 @@ builder.Services.AddBoboomJsService();
 ```
 
 ```razor
-@inject JsPart<UserBlazor> Js
+@inject BoJsPart<UserBlazor> Js
+
+@code {
+
+}
+```
+
+### 存储（LocalStorage 和 SessionStorage)
+
+```csharp
+builder.Services.AddBoboomJsService()
+	.AddBoboomJsStorageService();
+```
+
+```razor
+@inject BoJsStorage Storage
+
+@code {
+
+}
 ```

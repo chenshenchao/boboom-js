@@ -1,0 +1,42 @@
+﻿.boboom-js-storage-demo-page {
+    flex-grow: 1;
+}
+
+.local-demo-box, .session-demo-box {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 8px;
+}
+
+    .local-demo-box > textarea, .session-demo-box > textarea {
+        flex-grow: 1;
+    }
+
+.local-demo-top, .session-demo-top {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    align-items: stretch;
+    justify-content: stretch;
+    margin: 8px 0;
+}
+
+    .local-demo-top > input, .session-demo-top > input {
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+
+    .local-demo-top > button, .session-demo-top > button {
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin: 0 2px;
+    }
+
+    .local-demo-top > label, .session-demo-top > label {
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: 8px;
+        padding-right: 8px;
+        border-bottom: 1px solid #222;
+    }

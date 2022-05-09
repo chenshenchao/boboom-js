@@ -12,4 +12,10 @@ public static class BoJsServiceExtends
         services.AddScoped(typeof(BoJsPartLibrary<>), typeof(BoJsPartLibrary<>));
         return services;
     }
+
+    public static IServiceCollection AddBoboomJsStorageService(this IServiceCollection services, string sign="boboom")
+    {
+        services.AddSingleton(sp => new BoJsStorage(sp.GetRequiredService<IJSRuntime>(), sign));
+        return services;
+    }
 }
