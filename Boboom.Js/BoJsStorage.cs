@@ -40,6 +40,20 @@ public class BoJsStorage
         await local.InvokeVoidAsync("set", name, text, durationMs);
     }
 
+    public async ValueTask<bool> AddLocalExpireAsync(string name, TimeSpan span)
+    {
+        long stamp = (long)span.TotalMilliseconds;
+        IJSObjectReference local = await LocalTask.Value;
+        return await local.InvokeAsync<bool>(name, stamp);
+    }
+
+    public async ValueTask<bool> SetLocalExpireAsync(string name, DateTime time)
+    {
+        long stamp = (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
+        IJSObjectReference local = await LocalTask.Value;
+        return await local.InvokeAsync<bool>(name, stamp);
+    }
+
     public async ValueTask<bool> HasSessionAsync(string name)
     {
         IJSObjectReference session = await SessionTask.Value;
@@ -59,5 +73,19 @@ public class BoJsStorage
         int? durationMs = duration is null ? null : (int)duration.Value.TotalMilliseconds;
         string? text = value is null ? null : JsonSerializer.Serialize(value);
         await session.InvokeVoidAsync("set", name, text, durationMs);
+    }
+
+    public async ValueTask<bool> AddSessionExpireAsync(string name, TimeSpan span)
+    {
+        long stamp = (long)span.TotalMilliseconds;
+        IJSObjectReference session = await SessionTask.Value;
+        return await session.InvokeAsync<bool>(name, stamp);
+    }
+
+    public async ValueTask<bool> SetSessionExpireAsync(string name, DateTime time)
+    {
+        long stamp = (long)(time - new DateTime(1970, 1, 1)).TotalMilliseconds;
+        IJSObjectReference session = await SessionTask.Value;
+        return await session.InvokeAsync<bool>(name, stamp);
     }
 }

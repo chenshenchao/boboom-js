@@ -59,6 +59,18 @@
         }
         this.storage.setItem(key, text);
     }
+
+    expire(name, timestamp) {
+        let key = `${this.sign}_${name}`;
+        let text = this.storage.getItem(key);
+        if (!text) {
+            return false;
+        }
+        this.expiredMap[key] = timestamp;
+        let e = JSON.stringify(this.expiredMap);
+        this.storage.setItem(this.expiredKey, e);
+        return true;
+    }
 }
 
 
