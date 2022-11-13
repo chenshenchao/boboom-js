@@ -12,11 +12,22 @@ Install-Package Boboom.Js
 ## 使用
 
 ```csharp
+// 引入服务
 builder.Services.AddBoboomJsService();
 ```
 
+通过 Inject 使用，C# 或者 razor 任选一种。
+
+```csharp
+public partial class YourBlazorComponent
+{
+	[Inject]
+	public BoJsPart<YourBlazorComponent> Js { get; set; } = null!;
+}
+```
+
 ```razor
-@inject BoJsPart<UserBlazor> Js
+@inject BoJsPart<YourBlazorComponent> Js
 
 @code {
 
