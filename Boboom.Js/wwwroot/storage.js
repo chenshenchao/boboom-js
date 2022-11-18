@@ -1,4 +1,14 @@
-﻿export class BoStorage {
+﻿/**
+ * 
+ * 
+ * 
+ */
+export class BoStorage {
+    /**
+     * 
+     * @param {any} sign
+     * @param {any} storage
+     */
     constructor(sign, storage) {
         this.sign = sign;
         this.storage = storage;
@@ -7,6 +17,10 @@
         this.expiredMap = e ? JSON.parse(e) : {};
     }
 
+    /**
+     * 
+     * @param {any} name
+     */
     has(name) {
         let key = `${this.sign}_${name}`;
         let text = this.storage.getItem(key);
@@ -28,6 +42,11 @@
         return false;
     }
 
+    /**
+     * 
+     * @param {any} name
+     * @param {any} defaultValue
+     */
     get(name, defaultValue) {
         let key = `${this.sign}_${name}`;
         let text = this.storage.getItem(key);
@@ -49,6 +68,12 @@
         return text;
     }
 
+    /**
+     * 
+     * @param {any} name
+     * @param {any} text
+     * @param {any} durationMs
+     */
     set(name, text, durationMs) {
         let key = `${this.sign}_${name}`;
         if (durationMs) {
@@ -60,6 +85,11 @@
         this.storage.setItem(key, text);
     }
 
+    /**
+     * 
+     * @param {any} name
+     * @param {any} timestamp
+     */
     expire(name, timestamp) {
         let key = `${this.sign}_${name}`;
         let text = this.storage.getItem(key);
@@ -73,11 +103,23 @@
     }
 }
 
+const listener = window.addEventListener('storage', (e) => {
+
+});
+
+/**
+ * 
+ * @param {any} sign
+ */
 
 export const newBoLocalStorage = (sign) => {
     return new BoStorage(sign, localStorage);
 }
 
+/**
+ * 
+ * @param {any} sign
+ */
 export const newBoSessionStorage = (sign) => {
     return new BoStorage(sign, sessionStorage);
 }
